@@ -71,8 +71,8 @@
             backdrop-filter: blur(5px);
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             
-            /* Subtly float the entire container */
-            animation: float 6s ease-in-out infinite;
+            /* Floating effect speed increased (from 6s to 4s) */
+            animation: float 4s ease-in-out infinite; 
         }
         
         /* Floating Animation Keyframes */
@@ -86,14 +86,12 @@
             width: 100px;
             height: 100px;
             border-radius: 50%;
-            /* Centering fix: margin-left/right: auto */
             margin: 0 auto 1.5rem; 
             border: 2px solid var(--purple);
             padding: 4px;
             background-clip: content-box;
             background-color: transparent;
             object-fit: cover;
-            /* Ensure image is displayed as a block element for auto margins to work reliably */
             display: block; 
         }
 
@@ -103,71 +101,61 @@
             font-weight: 700;
             letter-spacing: -0.5px;
             text-shadow: 0 0 5px var(--purple);
-            /* Name animation removed per request */
             display: block; 
             width: fit-content;
             margin: 0 auto 0.5rem;
         }
 
-        /* Typing animation for Link 1 (Starts after 1s delay) */
-        .link-text-1 {
+        /* Typing animation for ALL Links (Starts simultaneously after 1s delay) */
+        .link-text {
             overflow: hidden;
             border-right: .15em solid var(--orange);
             white-space: nowrap;
             width: 0;
+            /* Animation timing is now uniform */
             animation: 
-                typing-link-1 2.5s steps(40, end) 1s forwards, 
-                blink-caret-link-1 .75s step-end infinite 1s;
-        }
-        @keyframes typing-link-1 {
-          from { width: 0 }
-          to { width: 13ch } /* Based on length of "spotify_user" */
-        }
-        @keyframes blink-caret-link-1 {
-          0%, 100% { border-color: transparent }
-          50% { border-color: var(--orange); }
-        }
-
-        /* Typing animation for Link 2 (Starts after Link 1 finishes + delay) */
-        .link-text-2 {
-            overflow: hidden;
-            border-right: .15em solid var(--orange);
-            white-space: nowrap;
-            width: 0;
-            animation: 
-                typing-link-2 3s steps(40, end) 4s forwards, 
-                blink-caret-link-2 .75s step-end infinite 4s;
-        }
-        @keyframes typing-link-2 {
-          from { width: 0 }
-          to { width: 18ch } /* Based on length of "carousell_clothes" */
-        }
-        @keyframes blink-caret-link-2 {
-          0%, 100% { border-color: transparent }
-          50% { border-color: var(--orange); }
+                typing 2.5s steps(40, end) 1s forwards, 
+                blink-caret .75s step-end infinite 1s;
         }
         
-        /* Typing animation for Link 3 (Starts after Link 2 finishes + delay) */
-        .link-text-3 {
-            overflow: hidden;
-            border-right: .15em solid var(--orange);
-            white-space: nowrap;
-            width: 0;
-            animation: 
-                typing-link-3 2.5s steps(40, end) 7.5s forwards, 
-                blink-caret-link-3 .75s step-end infinite 7.5s;
+        /* Custom Widths for Simultaneous Typing (adjusts based on the longest link) */
+        .link-text-3 { /* spotify_user is 13ch, setting to 13ch max */
+            animation-name: typing, blink-caret;
+            animation-duration: 2.5s, .75s;
+            animation-timing-function: steps(13, end), step-end;
+            animation-iteration-count: 1, infinite;
+            animation-delay: 1s, 1s;
+            animation-fill-mode: forwards;
         }
-        @keyframes typing-link-3 {
+        .link-text-2 { /* carousell_clothes is 18ch, setting to 18ch max */
+            animation-name: typing, blink-caret;
+            animation-duration: 3s, .75s;
+            animation-timing-function: steps(18, end), step-end;
+            animation-iteration-count: 1, infinite;
+            animation-delay: 1s, 1s;
+            animation-fill-mode: forwards;
+        }
+        .link-text-1 { /* thrift_store is 12ch, setting to 12ch max */
+            animation-name: typing, blink-caret;
+            animation-duration: 2.5s, .75s;
+            animation-timing-function: steps(12, end), step-end;
+            animation-iteration-count: 1, infinite;
+            animation-delay: 1s, 1s;
+            animation-fill-mode: forwards;
+        }
+
+        @keyframes typing {
           from { width: 0 }
-          to { width: 12ch } /* Based on length of "thrift_store" */
+          /* Note: Width is now overridden by the specific link class */
         }
-        @keyframes blink-caret-link-3 {
-          0%, 100% { border-color: transparent }
+        
+        @keyframes blink-caret {
+          from, to { border-color: transparent }
           50% { border-color: var(--orange); }
         }
 
-
         .subtitle {
+            /* Description changed per request */
             color: var(--cyan);
             font-size: 0.85rem;
             margin-bottom: 2rem;
@@ -245,22 +233,22 @@
         <img src="https://ui-avatars.com/api/?name=Reese&background=282a36&color=bd93f9&font-size=0.4" alt="Reese" class="profile-img">
         
         <h1>Reese</h1>
-        <div class="subtitle">~/music/playlists</div>
+        <div class="subtitle">~/bc/link/tree/sucks</div>
 
         <div class="link-group">
-            <a href="https://open.spotify.com/user/do9zavs0omswsd6pkpfn4zkul?si=06cb64c348864c95" class="link-btn" target="_blank">
-                <i class="fab fa-spotify icon"></i>
-                <span class="link-text-1">spotify_user</span>
+            <a href="https://www.instagram.com/junkd.findz" class="link-btn" target="_blank">
+                <i class="fab fa-instagram icon"></i>
+                <span class="link-text-1">thrift_store</span>
             </a>
             
             <a href="https://www.carousell.ph/u/r6ese/" class="link-btn" target="_blank">
                 <i class="fas fa-tshirt icon"></i>
                 <span class="link-text-2">carousell_clothes</span>
             </a>
-            
-            <a href="https://www.instagram.com/junkd.findz" class="link-btn" target="_blank">
-                <i class="fab fa-instagram icon"></i>
-                <span class="link-text-3">thrift_store</span>
+
+            <a href="https://open.spotify.com/user/do9zavs0omswsd6pkpfn4zkul?si=06cb64c348864c95" class="link-btn" target="_blank">
+                <i class="fab fa-spotify icon"></i>
+                <span class="link-text-3">spotify_user</span>
             </a>
             
         </div>
