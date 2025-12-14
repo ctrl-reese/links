@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reese | Links</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            /* Dracula Theme Colors */
+            --bg-color: #282a36;
+            --current-line: #44475a;
+            --foreground: #f8f8f2;
+            --comment: #6272a4;
+            --cyan: #8be9fd;
+            --green: #50fa7b;
+            --orange: #ffb86c;
+            --pink: #ff79c6;
+            --purple: #bd93f9;
+            --red: #ff5555;
+            --yellow: #f1fa8c;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'JetBrains Mono', 'Fira Code', monospace;
+            background-color: var(--bg-color);
+            color: var(--foreground);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            
+            /* Minimal Grid Background */
+            background-image: 
+                linear-gradient(var(--current-line) 1px, transparent 1px),
+                linear-gradient(90deg, var(--current-line) 1px, transparent 1px);
+            background-size: 40px 40px;
+            background-position: center top;
+        }
+
+        /* Vignette to soften edges */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle, transparent 40%, var(--bg-color) 100%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 380px;
+            text-align: center;
+            padding: 2rem;
+            background: rgba(40, 42, 54, 0.85);
+            border: 1px solid var(--current-line);
+            border-radius: 4px;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            
+            /* Subtly float the entire container */
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        /* Floating Animation Keyframes */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .profile-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            border: 2px solid var(--purple);
+            padding: 4px;
+            background-clip: content-box;
+            background-color: transparent;
+            object-fit: cover;
+        }
+
+        h1 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            /* Subtle text shadow */
+            text-shadow: 0 0 5px var(--purple);
+        }
+
+        .subtitle {
+            color: var(--cyan);
+            font-size: 0.85rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .link-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .link-btn {
+            display: flex;
+            align-items: center;
+            background-color: var(--current-line);
+            color: var(--foreground);
+            text-decoration: none;
+            padding: 0.9rem 1.2rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            /* Add transition for smooth effects */
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            border: 1px solid transparent;
+        }
+
+        /* Hover: Glow effect and gentle translation */
+        .link-btn:hover {
+            border-color: var(--green);
+            background-color: #353849;
+            transform: translateX(4px) scale(1.01);
+            box-shadow: 0 0 10px var(--green), 0 0 15px rgba(80, 250, 123, 0.2);
+        }
+        
+        /* Active/Click: Subtle scale down */
+        .link-btn:active {
+            transform: translateX(2px) scale(0.99);
+            box-shadow: none;
+        }
+
+        /* Hover effect: Change icon color */
+        .link-btn:hover .icon {
+            color: var(--green);
+        }
+
+        .icon {
+            font-size: 1.1rem;
+            margin-right: 12px;
+            width: 20px;
+            text-align: center;
+            color: var(--purple);
+            transition: color 0.3s;
+            /* Apply flicker animation to the icon */
+            animation: flicker 4s infinite alternate;
+        }
+
+        /* Icon Flicker Keyframes */
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            5% { opacity: 0.8; }
+            10% { opacity: 1; }
+            15% { opacity: 0.9; }
+            20% { opacity: 1; }
+        }
+
+        footer {
+            margin-top: 3rem;
+            font-size: 0.75rem;
+            color: var(--comment);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <img src="https://ui-avatars.com/api/?name=Reese&background=282a36&color=bd93f9&font-size=0.4" alt="Reese" class="profile-img">
+        
+        <h1>Reese</h1>
+        <div class="subtitle">~/music/playlists</div>
+
+        <div class="link-group">
+            <a href="https://open.spotify.com/playlist/44KMt2EcXGEwqqgzdg8LAo?si=81a6435fe98d4962" class="link-btn" target="_blank">
+                <i class="fab fa-spotify icon"></i>
+                <span>spotify_playlist.mp3</span>
+            </a>
+            
+            </div>
+
+        <footer>
+            <p>echo "© 2025"</p>
+        </footer>
+    </div>
+
+</body>
+</html>
