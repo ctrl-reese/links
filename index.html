@@ -71,7 +71,7 @@
             backdrop-filter: blur(5px);
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             
-            /* Floating effect speed increased (from 6s to 4s) */
+            /* Floating effect speed increased (4s) */
             animation: float 4s ease-in-out infinite; 
         }
         
@@ -106,56 +106,7 @@
             margin: 0 auto 0.5rem;
         }
 
-        /* Typing animation for ALL Links (Starts simultaneously after 1s delay) */
-        .link-text {
-            overflow: hidden;
-            border-right: .15em solid var(--orange);
-            white-space: nowrap;
-            width: 0;
-            /* Animation timing is now uniform */
-            animation: 
-                typing 2.5s steps(40, end) 1s forwards, 
-                blink-caret .75s step-end infinite 1s;
-        }
-        
-        /* Custom Widths for Simultaneous Typing (adjusts based on the longest link) */
-        .link-text-3 { /* spotify_user is 13ch, setting to 13ch max */
-            animation-name: typing, blink-caret;
-            animation-duration: 2.5s, .75s;
-            animation-timing-function: steps(13, end), step-end;
-            animation-iteration-count: 1, infinite;
-            animation-delay: 1s, 1s;
-            animation-fill-mode: forwards;
-        }
-        .link-text-2 { /* carousell_clothes is 18ch, setting to 18ch max */
-            animation-name: typing, blink-caret;
-            animation-duration: 3s, .75s;
-            animation-timing-function: steps(18, end), step-end;
-            animation-iteration-count: 1, infinite;
-            animation-delay: 1s, 1s;
-            animation-fill-mode: forwards;
-        }
-        .link-text-1 { /* thrift_store is 12ch, setting to 12ch max */
-            animation-name: typing, blink-caret;
-            animation-duration: 2.5s, .75s;
-            animation-timing-function: steps(12, end), step-end;
-            animation-iteration-count: 1, infinite;
-            animation-delay: 1s, 1s;
-            animation-fill-mode: forwards;
-        }
-
-        @keyframes typing {
-          from { width: 0 }
-          /* Note: Width is now overridden by the specific link class */
-        }
-        
-        @keyframes blink-caret {
-          from, to { border-color: transparent }
-          50% { border-color: var(--orange); }
-        }
-
         .subtitle {
-            /* Description changed per request */
             color: var(--cyan);
             font-size: 0.85rem;
             margin-bottom: 2rem;
@@ -219,6 +170,76 @@
             15% { opacity: 0.9; }
             20% { opacity: 1; }
         }
+        
+        /* --- TYPING ANIMATION (Synchronized) --- */
+
+        /* Base styles for all link text */
+        .link-text {
+            overflow: hidden;
+            border-right: .15em solid var(--orange);
+            white-space: nowrap;
+            width: 0;
+            font-weight: bold; /* Make the text stand out during typing */
+        }
+        
+        /* Animation keyframes (general) */
+        @keyframes typing {
+          from { width: 0 }
+          /* to { width: Xch } is set by the specific link class below */
+        }
+        
+        @keyframes blink-caret {
+          from, to { border-color: transparent }
+          50% { border-color: var(--orange); }
+        }
+
+        /* 1. thrift_store (12 characters) */
+        .link-text-1 { 
+            animation: 
+                typing 2s steps(12, end) 1s forwards, 
+                blink-caret .75s step-end infinite 1s;
+        }
+        /* Overriding the keyframe for length: 12ch */
+        @keyframes typing-1 {
+            from { width: 0 }
+            to { width: 12ch } 
+        }
+        .link-text-1 {
+            animation-name: typing-1, blink-caret;
+        }
+
+
+        /* 2. carousell_clothes (18 characters) */
+        .link-text-2 { 
+            animation: 
+                typing 3s steps(18, end) 1s forwards, 
+                blink-caret .75s step-end infinite 1s;
+        }
+        /* Overriding the keyframe for length: 18ch */
+        @keyframes typing-2 {
+            from { width: 0 }
+            to { width: 18ch } 
+        }
+        .link-text-2 {
+            animation-name: typing-2, blink-caret;
+        }
+
+        /* 3. spotify_user (13 characters) */
+        .link-text-3 {
+            animation: 
+                typing 2.1s steps(13, end) 1s forwards, /* 13 steps slightly faster than link 1 for variety */
+                blink-caret .75s step-end infinite 1s;
+        }
+        /* Overriding the keyframe for length: 13ch */
+        @keyframes typing-3 {
+            from { width: 0 }
+            to { width: 13ch } 
+        }
+        .link-text-3 {
+            animation-name: typing-3, blink-caret;
+        }
+        
+        /* --- END TYPING ANIMATION --- */
 
         footer {
             margin-top: 3rem;
@@ -238,17 +259,17 @@
         <div class="link-group">
             <a href="https://www.instagram.com/junkd.findz" class="link-btn" target="_blank">
                 <i class="fab fa-instagram icon"></i>
-                <span class="link-text-1">thrift_store</span>
+                <span class="link-text link-text-1">thrift_store</span>
             </a>
             
             <a href="https://www.carousell.ph/u/r6ese/" class="link-btn" target="_blank">
                 <i class="fas fa-tshirt icon"></i>
-                <span class="link-text-2">carousell_clothes</span>
+                <span class="link-text link-text-2">carousell_clothes</span>
             </a>
 
             <a href="https://open.spotify.com/user/do9zavs0omswsd6pkpfn4zkul?si=06cb64c348864c95" class="link-btn" target="_blank">
                 <i class="fab fa-spotify icon"></i>
-                <span class="link-text-3">spotify_user</span>
+                <span class="link-text link-text-3">spotify_user</span>
             </a>
             
         </div>
