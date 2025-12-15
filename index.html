@@ -13,18 +13,17 @@
 
     <style>
         :root {
-            /* Dracula Theme Colors */
-            --bg-color: #282a36;
-            --current-line: #44475a;
-            --foreground: #f8f8f2;
-            --comment: #6272a4;
-            --cyan: #8be9fd;
-            --green: #50fa7b;
-            --orange: #ffb86c;
-            --pink: #ff79c6;
-            --purple: #bd93f9;
-            --red: #ff5555;
-            --yellow: #f1fa8c;
+            /* Catppuccin Mocha Color Palette */
+            --bg-color: #1e1e2e;      /* Base */
+            --current-line: #181825;  /* Mantle (Container BG) */
+            --foreground: #cdd6f4;    /* Text */
+            --comment: #585b70;       /* Surface2 (Subtle text) */
+            --cyan: #89b4fa;          /* Blue (for subtitle) */
+            --green: #a6e3a1;         /* Green (for hover glow) */
+            --orange: #fab387;        /* Peach (for typing cursor) */
+            --pink: #f5c2e7;          /* Pink (for icon/accent) */
+            --red: #f38ba8;
+            --yellow: #f9e2af;
         }
 
         * {
@@ -44,8 +43,8 @@
             
             /* Minimal Grid Background */
             background-image: 
-                linear-gradient(var(--current-line) 1px, transparent 1px),
-                linear-gradient(90deg, var(--current-line) 1px, transparent 1px);
+                linear-gradient(var(--comment) 1px, transparent 1px),
+                linear-gradient(90deg, var(--comment) 1px, transparent 1px);
             background-size: 40px 40px;
             background-position: center top;
         }
@@ -65,13 +64,13 @@
             max-width: 380px;
             text-align: center;
             padding: 2rem;
-            background: rgba(40, 42, 54, 0.85);
-            border: 1px solid var(--current-line);
+            background: var(--current-line);
+            border: 1px solid var(--comment);
             border-radius: 4px;
             backdrop-filter: blur(5px);
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             
-            /* Floating effect speed increased (4s) */
+            /* Floating effect speed (4s) */
             animation: float 4s ease-in-out infinite; 
         }
         
@@ -87,7 +86,8 @@
             height: 100px;
             border-radius: 50%;
             margin: 0 auto 1.5rem; 
-            border: 2px solid var(--purple);
+            /* Border color changed to Pink */
+            border: 2px solid var(--pink); 
             padding: 4px;
             background-clip: content-box;
             background-color: transparent;
@@ -100,7 +100,8 @@
             margin-bottom: 0.5rem;
             font-weight: 700;
             letter-spacing: -0.5px;
-            text-shadow: 0 0 5px var(--purple);
+            /* Text shadow changed to Pink */
+            text-shadow: 0 0 5px var(--pink); 
             display: block; 
             width: fit-content;
             margin: 0 auto 0.5rem;
@@ -122,7 +123,7 @@
         .link-btn {
             display: flex;
             align-items: center;
-            background-color: var(--current-line);
+            background-color: #313244; /* Slightly lighter than Mantle for contrast */
             color: var(--foreground);
             text-decoration: none;
             padding: 0.9rem 1.2rem;
@@ -134,10 +135,11 @@
 
         /* Hover: Glow effect and gentle translation */
         .link-btn:hover {
+            /* Hover border/glow changed to Green */
             border-color: var(--green);
-            background-color: #353849;
+            background-color: #313244; 
             transform: translateX(4px) scale(1.01);
-            box-shadow: 0 0 10px var(--green), 0 0 15px rgba(80, 250, 123, 0.2);
+            box-shadow: 0 0 10px var(--green), 0 0 15px rgba(166, 227, 161, 0.2);
         }
         
         /* Active/Click: Subtle scale down */
@@ -156,7 +158,8 @@
             margin-right: 12px;
             width: 20px;
             text-align: center;
-            color: var(--purple);
+            /* Icon color changed to Pink */
+            color: var(--pink); 
             transition: color 0.3s;
             /* Apply flicker animation to the icon */
             animation: flicker 4s infinite alternate;
@@ -176,67 +179,50 @@
         /* Base styles for all link text */
         .link-text {
             overflow: hidden;
-            border-right: .15em solid var(--orange);
+            /* Cursor color changed to Peach */
+            border-right: .15em solid var(--orange); 
             white-space: nowrap;
             width: 0;
-            font-weight: bold; /* Make the text stand out during typing */
-        }
-        
-        /* Animation keyframes (general) */
-        @keyframes typing {
-          from { width: 0 }
-          /* to { width: Xch } is set by the specific link class below */
+            font-weight: bold; 
         }
         
         @keyframes blink-caret {
           from, to { border-color: transparent }
-          50% { border-color: var(--orange); }
+          /* Cursor color changed to Peach */
+          50% { border-color: var(--orange); } 
         }
 
         /* 1. thrift_store (12 characters) */
         .link-text-1 { 
             animation: 
-                typing 2s steps(12, end) 1s forwards, 
+                typing-1 2s steps(12, end) 1s forwards, 
                 blink-caret .75s step-end infinite 1s;
         }
-        /* Overriding the keyframe for length: 12ch */
         @keyframes typing-1 {
             from { width: 0 }
             to { width: 12ch } 
         }
-        .link-text-1 {
-            animation-name: typing-1, blink-caret;
-        }
-
 
         /* 2. carousell_clothes (18 characters) */
         .link-text-2 { 
             animation: 
-                typing 3s steps(18, end) 1s forwards, 
+                typing-2 3s steps(18, end) 1s forwards, 
                 blink-caret .75s step-end infinite 1s;
         }
-        /* Overriding the keyframe for length: 18ch */
         @keyframes typing-2 {
             from { width: 0 }
             to { width: 18ch } 
-        }
-        .link-text-2 {
-            animation-name: typing-2, blink-caret;
         }
 
         /* 3. spotify_user (13 characters) */
         .link-text-3 {
             animation: 
-                typing 2.1s steps(13, end) 1s forwards, /* 13 steps slightly faster than link 1 for variety */
+                typing-3 2.1s steps(13, end) 1s forwards, 
                 blink-caret .75s step-end infinite 1s;
         }
-        /* Overriding the keyframe for length: 13ch */
         @keyframes typing-3 {
             from { width: 0 }
             to { width: 13ch } 
-        }
-        .link-text-3 {
-            animation-name: typing-3, blink-caret;
         }
         
         /* --- END TYPING ANIMATION --- */
@@ -251,7 +237,7 @@
 <body>
 
     <div class="container">
-        <img src="https://ui-avatars.com/api/?name=Reese&background=282a36&color=bd93f9&font-size=0.4" alt="Reese" class="profile-img">
+        <img src="https://ui-avatars.com/api/?name=瑞斯&background=1e1e2e&color=f5c2e7&font-size=0.4" alt="Reese" class="profile-img">
         
         <h1>Reese</h1>
         <div class="subtitle">~/bc/link/tree/sucks</div>
