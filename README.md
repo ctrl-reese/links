@@ -47,7 +47,7 @@ Need to change a link or update the text? It's simple:
 
 ## 🎨 Design Philosophy
 
-* **Aesthetic:** Dracula Theme (dark background, neon accents).
+* **Aesthetic:** Catpuccin Mocha (dark background, neon accents).
 * **Font:** JetBrains Mono (coding/terminal font).
 * **Animations:** Subtle float on the container, simultaneous typing effect on links, and a neon glow on button hover.
 
